@@ -41,10 +41,6 @@ systemctl enable mariadb.service
 service nginx restart
 service httpd restart
 
-# Set template for domain
-
-/usr/local/vesta/bin/v-change-web-domain-proxy-tpl admin $1 wordpress2_wp_super_cache
-
 # WP-CLI
 
 wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
@@ -70,6 +66,10 @@ chown -R admin:admin /home/admin/web/$1/public_html
 # SSL
 
 /usr/local/vesta/bin/v-add-letsencrypt-domain admin $1
+
+# Set template for domain
+
+/usr/local/vesta/bin/v-change-web-domain-tpl admin $1 wordpress2_wp_super_cache
 
 echo "WordPress"
 echo "User: admin"
