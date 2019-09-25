@@ -43,11 +43,11 @@ service httpd restart
 
 # SSL
 
-v-add-letsencrypt-domain admin $1
+/usr/local/vesta/bin/v-add-letsencrypt-domain admin $1
 
 # Set template for domain
 
-v-change-web-domain-proxy-tpl admin $1 wordpress2_wp_super_cache
+/usr/local/vesta/bin/v-change-web-domain-proxy-tpl admin $1 wordpress2_wp_super_cache
 
 # WP-CLI
 
