@@ -41,10 +41,6 @@ systemctl enable mariadb.service
 service nginx restart
 service httpd restart
 
-# SSL
-
-/usr/local/vesta/bin/v-add-letsencrypt-domain admin $1
-
 # Set template for domain
 
 /usr/local/vesta/bin/v-change-web-domain-proxy-tpl admin $1 wordpress2_wp_super_cache
@@ -70,6 +66,10 @@ wp core download --allow-root
 wp core config --dbname=admin_$db --dbuser=admin_$user --dbpass=$pass --dbhost=localhost --dbprefix=wp_ --allow-root
 wp core install --url=http://$1 --title=$1 --admin_user=admin --admin_password=$passwp --admin_email=info@$1 --allow-root
 chown -R admin:admin /home/admin/web/$1/public_html
+
+# SSL
+
+/usr/local/vesta/bin/v-add-letsencrypt-domain admin $1
 
 echo "WordPress"
 echo "User: admin"
